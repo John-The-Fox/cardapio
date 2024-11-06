@@ -2,6 +2,9 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="blueGray">#FF6565bf</color>
-    <color name="blueSerenity">#FFbaf6f7</color>
+    <color name="dark_blue">#FF003366</color>
+    <color name="orange">#FFFF9900</color>
+    <color name="light_beige">#FFF5F5DC</color>
+    <color name="text_primary">#D9FFF6</color>
+    <color name="text_secondary">#B6C5C1</color>
 </resources>
