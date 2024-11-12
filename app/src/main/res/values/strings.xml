@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">cardapio</string>
     <string name="email_hint">E-mail</string>
+    <string name="tel_hint">Telefone</string>
     <string name="name_hint">Nome Completo</string>
     <string name="password_hint">Senha</string>
     <string name="confirmPassword_hint">Repetir Senha</string>
