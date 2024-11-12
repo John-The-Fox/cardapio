@@ -4,7 +4,7 @@
     <color name="white">#FFFFFFFF</color>
     <color name="dark_blue">#FF003366</color>
     <color name="orange">#FFFF9900</color>
-    <color name="light_beige">#FFF5F5DC</color>
+    <color name="light_beige">#C8C8AC</color>
     <color name="text_primary">#D9FFF6</color>
     <color name="text_secondary">#B6C5C1</color>
 </resources>
