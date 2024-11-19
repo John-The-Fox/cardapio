@@ -18,7 +18,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toTopOf="@+id/viewPager"
         app:layout_constraintWidth_percent="1"
-        app:layout_constraintHeight_percent="0.4"
+        app:layout_constraintHeight_percent="0.35"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
@@ -30,7 +30,8 @@
         app:layout_constraintBottom_toTopOf="@id/email"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginBottom="10dp"/>
+        android:layout_marginBottom="10dp"
+        android:radius="12dp"/>
 
     <EditText
         android:id="@+id/email"
