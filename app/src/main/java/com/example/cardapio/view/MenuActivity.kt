@@ -1,14 +1,20 @@
 package com.example.cardapio.view
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
+import android.view.animation.AnimationUtils
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.cardapio.R
 import com.example.cardapio.controller.MenuAdapter
 import com.example.cardapio.databinding.ActivityMenuBinding
 import com.example.cardapio.model.MenuItem
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.android.material.tabs.TabLayout
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.QuerySnapshot
 
 class MenuActivity : AppCompatActivity() {
@@ -16,6 +22,7 @@ class MenuActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMenuBinding
     private lateinit var adapter: MenuAdapter
     private val items = mutableListOf<MenuItem>() // Lista para armazenar os itens do menu
+    private val cartItems = mutableListOf<MenuItem>() // Lista para carrinho de compras
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,6 +33,7 @@ class MenuActivity : AppCompatActivity() {
 
         // Configura a Toolbar
         setSupportActionBar(binding.toolbar)
+        supportActionBar?.setDisplayShowTitleEnabled(true) // Exibe o título definido no XML
 
         // Configura as Tabs (TabLayout)
         val categories = listOf("Entradas", "Pratos Principais", "Bebidas", "Saladas")
@@ -52,6 +60,32 @@ class MenuActivity : AppCompatActivity() {
 
         // Carrega itens da primeira categoria por padrão
         loadMenuItemsFromFirestore(categories.first())
+    }
+
+    // Método para inflar o menu
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_toolbar, menu)
+        return true
+    }
+
+    // Método para tratar ações de clique no menu
+    override fun onOptionsItemSelected(item: android.view.MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.action_cart -> {
+                val intent = Intent(this, CartActivity::class.java)
+                startActivity(intent)
+                true
+            }
+            R.id.action_logout -> {
+                FirebaseAuth.getInstance().signOut()
+                val intent = Intent(this, MainActivity::class.java)
+                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
+                startActivity(intent)
+                finish()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
     }
 
     private fun loadMenuItemsFromFirestore(category: String) {
@@ -88,9 +122,25 @@ class MenuActivity : AppCompatActivity() {
 
     private fun onAddClick(item: MenuItem) {
         // Lógica ao clicar no botão de adicionar
+        // Verifica se o item já está no carrinho
+        val cartItem = cartItems.find { it.name == item.name }
+        if (cartItem != null) {
+            // Incrementa a quantidade
+            cartItem.quantity += 1
+        } else {
+            // Adiciona o item com quantidade inicial 1
+            val newItem = item.copy(quantity = 1)
+            cartItems.add(newItem)
+        }
+
+        // Animação simples (exemplo de animação de fade no botão)
+                Toast.makeText(this, "${item.name} adicionado ao carrinho!", Toast.LENGTH_SHORT).show()
     }
 
     private fun onItemClick(item: MenuItem) {
         // Lógica ao clicar no item para abrir os detalhes
+        val intent = Intent(this, ItemDetailsActivity::class.java)
+        intent.putExtra("item", item) // Envie o objeto item para a próxima Activity
+        startActivity(intent)
     }
 }

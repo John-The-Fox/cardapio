@@ -3,6 +3,7 @@ package com.example.cardapio.controller
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
@@ -32,9 +33,13 @@ class MenuAdapter(
     override fun onBindViewHolder(holder: MenuViewHolder, position: Int) {
         val item = items[position]
         holder.nameView.text = item.name
-        holder.priceView.text = "R$ ${item.price}"
+        holder.priceView.text = String.format("R$ %.2f", item.price)
         Glide.with(holder.imageView.context).load(item.imageUrl).into(holder.imageView)
-        holder.addButton.setOnClickListener { onAddClick(item) }
+        holder.addButton.setOnClickListener {
+            onAddClick(item)
+            val animation = AnimationUtils.loadAnimation(holder.itemView.context, R.anim.bounce)
+            holder.addButton.startAnimation(animation)
+        }
         holder.itemView.setOnClickListener { onItemClick(item) }
     }
 

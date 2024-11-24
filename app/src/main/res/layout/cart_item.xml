@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="8dp">
+
+    <!-- Thumbnail -->
+    <ImageView
+        android:id="@+id/thumbnail"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:contentDescription="@string/plate_image"
+        android:scaleType="centerCrop"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+    <!-- Nome do prato -->
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Nome do prato"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:textColor="@android:color/white"
+        app:layout_constraintStart_toEndOf="@id/thumbnail"
+        app:layout_constraintEnd_toStartOf="@id/remove_button"
+        app:layout_constraintTop_toTopOf="@id/thumbnail"
+        android:ellipsize="end"
+        android:maxLines="1" />
+
+    <!-- Preço unitário -->
+    <TextView
+        android:id="@+id/price"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="R$ 10.00"
+        android:textSize="14sp"
+        android:textColor="@android:color/darker_gray"
+        app:layout_constraintStart_toStartOf="@id/name"
+        app:layout_constraintTop_toBottomOf="@id/name" />
+
+    <!-- Preço total -->
+    <TextView
+        android:id="@+id/total"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Total: R$ 20.00"
+        android:textSize="14sp"
+        android:textColor="@android:color/darker_gray"
+        app:layout_constraintStart_toStartOf="@id/name"
+        app:layout_constraintTop_toBottomOf="@id/price" />
+
+    <!-- Botão diminuir quantidade -->
+    <Button
+        android:id="@+id/remove_button"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:background="@drawable/remove_circle"
+        android:contentDescription="Diminuir quantidade"
+        app:layout_constraintStart_toEndOf="@id/total"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- Quantidade -->
+    <TextView
+        android:id="@+id/quantity"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:gravity="center"
+        android:text="1"
+        android:textSize="16sp"
+        android:textColor="@android:color/white"
+        app:layout_constraintStart_toEndOf="@id/remove_button"
+        app:layout_constraintTop_toTopOf="@id/remove_button" />
+
+    <!-- Botão aumentar quantidade -->
+    <Button
+        android:id="@+id/add_button"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:background="@drawable/add_circle"
+        android:contentDescription="Aumentar quantidade"
+        app:layout_constraintStart_toEndOf="@id/quantity"
+        app:layout_constraintTop_toTopOf="@id/quantity" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
