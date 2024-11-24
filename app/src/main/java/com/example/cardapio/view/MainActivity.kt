@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager2.widget.ViewPager2
@@ -81,9 +82,11 @@ class MainActivity : AppCompatActivity() {
             ctrl.login(email, password) { sucesso, erro ->
                 if (sucesso) {
                     Toast.makeText(this, "Login efetuado com sucesso!", Toast.LENGTH_SHORT).show()
-                    val it = Intent(this, MenuActivity:: class.java)
-                    startActivity(it)
+                    val intent = Intent(this, MenuActivity::class.java)
+                    startActivity(intent)
+                    finish() // Finaliza a Activity atual para evitar retorno ao login
                 } else {
+                    Log.e("MainActivity", "Erro no login: $erro")
                     Toast.makeText(this, "Erro no login: $erro", Toast.LENGTH_SHORT).show()
                 }
             }

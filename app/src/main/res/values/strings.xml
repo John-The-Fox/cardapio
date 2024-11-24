@@ -8,4 +8,6 @@
     <string name="btn_login_text">LOGIN</string>
     <string name="btn_register_text">REGISTRAR</string>
     <string name="forgot_password_text">Esqueci a senha</string>
+    <string name="add_button_text">Adicionar</string>
+    <string name="plate_image">Imagen do prato</string>
 </resources>
