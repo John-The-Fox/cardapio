@@ -2,8 +2,8 @@ package com.example.cardapio.view
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.cardapio.controller.CartItemAdapter
 import com.example.cardapio.controller.CartManager

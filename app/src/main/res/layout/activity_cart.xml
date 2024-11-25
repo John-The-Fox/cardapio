@@ -21,6 +21,7 @@
         android:layout_height="wrap_content"
         android:text="Total: R$ 0,00"
         android:textSize="18sp"
+        android:textColor="@android:color/white"
         android:textStyle="bold"
         android:layout_gravity="end"
         android:layout_marginTop="8dp" />
@@ -29,6 +30,7 @@
     <Button
         android:id="@+id/confirmOrderButton"
         android:layout_width="match_parent"
+        android:textColor="@android:color/white"
         android:layout_height="wrap_content"
         android:text="Confirmar Pedido"
         android:layout_marginTop="16dp"

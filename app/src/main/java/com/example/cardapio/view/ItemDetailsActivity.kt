@@ -11,7 +11,6 @@ import com.bumptech.glide.Glide
 import com.example.cardapio.R
 import com.example.cardapio.controller.CartManager
 import com.example.cardapio.model.MenuItem
-import com.google.android.material.snackbar.Snackbar
 
 class ItemDetailsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

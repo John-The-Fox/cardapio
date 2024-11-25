@@ -13,9 +13,8 @@ import com.example.cardapio.controller.CartManager
 import com.example.cardapio.controller.MenuAdapter
 import com.example.cardapio.databinding.ActivityMenuBinding
 import com.example.cardapio.model.MenuItem
-import com.google.firebase.firestore.FirebaseFirestore
 import com.google.android.material.tabs.TabLayout
-import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.QuerySnapshot
 
 class MenuActivity : AppCompatActivity() {

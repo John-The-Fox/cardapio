@@ -57,6 +57,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        android:textColor="@android:color/white"
         android:backgroundTint="@color/orange"
         android:padding="16dp"
         android:layout_marginBottom="16dp" />
