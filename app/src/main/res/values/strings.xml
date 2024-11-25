@@ -12,4 +12,7 @@
     <string name="plate_image">Imagen do prato</string>
     <string name="cart_icon">Carrinho</string>
     <string name="logoff">Sair</string>
+    <string name="esqueceu_na_senha">Esqueceu \na senha?</string>
+    <string name="informe_o_seu_e_mail_para_recuperar_a_senha_voc_receber_uma_mensagem_contendo_as_instru_es_para_recupera_o">Informe o seu e-mail para recuperar a senha.Você receberá uma mensagem contendo as instruções para recuperação.</string>
+    <string name="enviar">Enviar</string>
 </resources>

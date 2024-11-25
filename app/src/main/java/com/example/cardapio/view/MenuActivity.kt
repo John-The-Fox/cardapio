@@ -8,6 +8,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.cardapio.R
+import com.example.cardapio.controller.AuthenticationController
 import com.example.cardapio.controller.CartManager
 import com.example.cardapio.controller.MenuAdapter
 import com.example.cardapio.databinding.ActivityMenuBinding
@@ -22,7 +23,7 @@ class MenuActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMenuBinding
     private lateinit var adapter: MenuAdapter
     private val items = mutableListOf<MenuItem>() // Lista para armazenar os itens do menu
-    private val cartItems = mutableListOf<MenuItem>() // Lista para carrinho de compras
+    private lateinit var ctrl: AuthenticationController
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -78,7 +79,8 @@ class MenuActivity : AppCompatActivity() {
                 true
             }
             R.id.action_logout -> {
-                FirebaseAuth.getInstance().signOut()
+                ctrl = AuthenticationController()
+                ctrl.logout()
                 val intent = Intent(this, MainActivity::class.java)
                 intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
                 startActivity(intent)

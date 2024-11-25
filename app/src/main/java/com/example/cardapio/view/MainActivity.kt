@@ -11,7 +11,6 @@ import androidx.viewpager2.widget.ViewPager2
 import com.example.cardapio.controller.AuthenticationController
 import com.example.cardapio.controller.ImageAdapter
 import com.example.cardapio.databinding.ActivityMainBinding
-import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 
 class MainActivity : AppCompatActivity() {
