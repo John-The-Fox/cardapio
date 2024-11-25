@@ -6,60 +6,58 @@ import androidx.appcompat.app.AppCompatActivity
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.cardapio.controller.CartItemAdapter
+import com.example.cardapio.controller.CartManager
 import com.example.cardapio.databinding.ActivityCartBinding
-import com.example.cardapio.model.CartItem
+import com.example.cardapio.model.MenuItem
 
 class CartActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityCartBinding
-    private val cartItems = mutableListOf<CartItem>()
     private lateinit var cartAdapter: CartItemAdapter
+    private lateinit var cartItems: MutableList<MenuItem>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityCartBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        // Inicializa cartItems corretamente
+        cartItems = CartManager.getItems()
+
+
         // Configura RecyclerView
         cartAdapter = CartItemAdapter(cartItems, ::updateCartItem, ::removeCartItem)
         binding.cartRecyclerView.layoutManager = LinearLayoutManager(this)
         binding.cartRecyclerView.adapter = cartAdapter
 
-        // Exibe o valor total do pedido
+        // Atualiza o preço total
         updateTotalPrice()
 
-        // Botão para confirmar o pedido
+        // Configura o botão de confirmação
         binding.confirmOrderButton.setOnClickListener {
             confirmOrder()
         }
-
-        // Simula itens adicionados para teste
-        loadCartItems()
     }
+
 
     private fun loadCartItems() {
-        // Simula itens adicionados no carrinho
-        cartItems.add(CartItem("Pizza Margherita", 35.0, 1))
-        cartItems.add(CartItem("Coca-Cola", 5.0, 2))
-        cartAdapter.notifyDataSetChanged()
-        updateTotalPrice()
+        // logica de carregar aqui
+        //cartAdapter.notifyDataSetChanged()
+        //updateTotalPrice()
     }
 
-    private fun updateCartItem(cartItem: CartItem, increment: Boolean) {
+    private fun updateCartItem(cartItem: MenuItem, increment: Boolean) {
         if (increment) {
-            cartItem.quantity++
+            CartManager.addItem(cartItem)
         } else {
-            cartItem.quantity--
-            if (cartItem.quantity <= 0) {
-                cartItems.remove(cartItem)
-            }
+            CartManager.reduceItem(cartItem)
         }
         cartAdapter.notifyDataSetChanged()
         updateTotalPrice()
     }
 
-    private fun removeCartItem(cartItem: CartItem) {
-        cartItems.remove(cartItem)
+    private fun removeCartItem(cartItem: MenuItem) {
+        CartManager.reduceItem(cartItem)
         cartAdapter.notifyDataSetChanged()
         updateTotalPrice()
     }

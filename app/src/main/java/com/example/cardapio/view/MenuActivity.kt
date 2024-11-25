@@ -4,11 +4,11 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
-import android.view.animation.AnimationUtils
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.cardapio.R
+import com.example.cardapio.controller.CartManager
 import com.example.cardapio.controller.MenuAdapter
 import com.example.cardapio.databinding.ActivityMenuBinding
 import com.example.cardapio.model.MenuItem
@@ -36,7 +36,7 @@ class MenuActivity : AppCompatActivity() {
         supportActionBar?.setDisplayShowTitleEnabled(true) // Exibe o título definido no XML
 
         // Configura as Tabs (TabLayout)
-        val categories = listOf("Entradas", "Pratos Principais", "Bebidas", "Saladas")
+        val categories = listOf("Entradas", "Pratos Principais", "Saladas", "Bebidas")
         categories.forEach { category ->
             binding.tabLayout.addTab(binding.tabLayout.newTab().setText(category))
         }
@@ -73,6 +73,7 @@ class MenuActivity : AppCompatActivity() {
         return when (item.itemId) {
             R.id.action_cart -> {
                 val intent = Intent(this, CartActivity::class.java)
+                //intent.putExtra("cartItems", ArrayList(cartItems)) // erro
                 startActivity(intent)
                 true
             }
@@ -110,7 +111,8 @@ class MenuActivity : AppCompatActivity() {
                 val item = MenuItem(
                     name = document.getString("name") ?: "",
                     price = price,
-                    imageUrl = document.getString("imageUrl") ?: ""
+                    imageUrl = document.getString("imageUrl") ?: "",
+                    description = document.getString("description") ?: ""
                 )
                 items.add(item)
             } catch (e: Exception) {
@@ -122,16 +124,7 @@ class MenuActivity : AppCompatActivity() {
 
     private fun onAddClick(item: MenuItem) {
         // Lógica ao clicar no botão de adicionar
-        // Verifica se o item já está no carrinho
-        val cartItem = cartItems.find { it.name == item.name }
-        if (cartItem != null) {
-            // Incrementa a quantidade
-            cartItem.quantity += 1
-        } else {
-            // Adiciona o item com quantidade inicial 1
-            val newItem = item.copy(quantity = 1)
-            cartItems.add(newItem)
-        }
+        CartManager.addItem(item)
 
         // Animação simples (exemplo de animação de fade no botão)
                 Toast.makeText(this, "${item.name} adicionado ao carrinho!", Toast.LENGTH_SHORT).show()

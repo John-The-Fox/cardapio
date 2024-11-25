@@ -3,12 +3,15 @@ package com.example.cardapio.controller
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.cardapio.model.CartItem
+import com.bumptech.glide.Glide
+import com.example.cardapio.R
+import com.example.cardapio.databinding.CartItemBinding
+import com.example.cardapio.model.MenuItem
 
 class CartItemAdapter(
-    private val cartItems: MutableList<CartItem>,
-    private val onQuantityChange: (CartItem, Boolean) -> Unit,
-    private val onRemoveItem: (CartItem) -> Unit
+    private val cartItems: MutableList<MenuItem>,
+    private val onQuantityChange: (MenuItem, Boolean) -> Unit,
+    private val onRemoveItem: (MenuItem) -> Unit
 ) : RecyclerView.Adapter<CartItemAdapter.CartViewHolder>() {
 
     class CartViewHolder(val binding: CartItemBinding) : RecyclerView.ViewHolder(binding.root)
@@ -23,22 +26,24 @@ class CartItemAdapter(
         val cartItem = cartItems[position]
 
         // Configura as informações do item
-        holder.binding.itemNameTextView.text = cartItem.name
-        holder.binding.itemPriceTextView.text = String.format("R$ %.2f", cartItem.price)
-        holder.binding.quantityTextView.text = cartItem.quantity.toString()
-        holder.binding.totalPriceTextView.text = String.format("R$ %.2f", cartItem.price * cartItem.quantity)
+        holder.binding.name.text = cartItem.name
+        holder.binding.price.text = String.format("R$ %.2f", cartItem.price)
+        holder.binding.quantity.text = cartItem.quantity.toString()
+        holder.binding.total.text = String.format("R$ %.2f", cartItem.price * cartItem.quantity)
+
+        // Carrega a imagem usando Glide
+        Glide.with(holder.itemView.context)
+            .load(cartItem.imageUrl) // Substitua pelo campo correto do modelo
+            .placeholder(R.drawable.placeholder) // Imagem temporária
+            .error(R.drawable.error_image) // Imagem caso o carregamento falhe
+            .into(holder.binding.thumbnail)
 
         // Configura os botões de incremento e decremento
-        holder.binding.incrementButton.setOnClickListener {
+        holder.binding.addButton.setOnClickListener {
             onQuantityChange(cartItem, true)
         }
-        holder.binding.decrementButton.setOnClickListener {
-            onQuantityChange(cartItem, false)
-        }
-
-        // Configura o botão de remover item
         holder.binding.removeButton.setOnClickListener {
-            onRemoveItem(cartItem)
+            onQuantityChange(cartItem, false)
         }
     }
 
