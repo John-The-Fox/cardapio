@@ -15,4 +15,9 @@
     <string name="esqueceu_na_senha">Esqueceu \na senha?</string>
     <string name="informe_o_seu_e_mail_para_recuperar_a_senha_voc_receber_uma_mensagem_contendo_as_instru_es_para_recupera_o">Informe o seu e-mail para recuperar a senha.Você receberá uma mensagem contendo as instruções para recuperação.</string>
     <string name="enviar">Enviar</string>
+    <string name="diminuir_quantidade">Diminuir quantidade</string>
+    <string name="aumentar_quantidade">Aumentar quantidade</string>
+    <string name="app_logo">App Logo</string>
+    <string name="adicionar_ao_pedido">Adicionar ao Pedido</string>
+    <string name="confirmar_pedido">Confirmar Pedido</string>
 </resources>

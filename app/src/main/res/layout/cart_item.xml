@@ -59,7 +59,7 @@
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:background="@drawable/remove_circle"
-        android:contentDescription="Diminuir quantidade"
+        android:contentDescription="@string/diminuir_quantidade"
         app:layout_constraintEnd_toStartOf="@id/quantity"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent" />
@@ -83,7 +83,7 @@
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:background="@drawable/add_circle"
-        android:contentDescription="Aumentar quantidade"
+        android:contentDescription="@string/aumentar_quantidade"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent" />
