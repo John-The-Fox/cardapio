@@ -12,7 +12,7 @@ import com.example.cardapio.controller.AuthenticationController
 import com.example.cardapio.controller.ImageAdapter
 import com.example.cardapio.databinding.ActivityMainBinding
 import com.google.firebase.firestore.FirebaseFirestore
-
+// Tela principal com carrossel de imagens e login.
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
@@ -25,7 +25,7 @@ class MainActivity : AppCompatActivity() {
             val itemCount = viewPager.adapter?.itemCount ?: 0
             val nextItem = (viewPager.currentItem + 1) % itemCount
             viewPager.setCurrentItem(nextItem, false)
-            handler.postDelayed(this, 3000) // 3 segundos por slide
+            handler.postDelayed(this, 3000) // Troca imagens a cada 3 segundos.
         }
     }
 
@@ -44,7 +44,7 @@ class MainActivity : AppCompatActivity() {
         val passwordRecover = binding.passwordRecover
         val firestore = FirebaseFirestore.getInstance()
         val imagesCollection = firestore.collection("restaurantImages")
-
+        // Configura carrossel de imagens.
         imagesCollection.get().addOnSuccessListener { result ->
             val imageUrls = result.documents.mapNotNull { it.getString("url") }
             val adapter = ImageAdapter(imageUrls)
@@ -66,7 +66,7 @@ class MainActivity : AppCompatActivity() {
         })
 
         handler.postDelayed(autoScrollRunnable, 3000)
-
+        // Configura botão de login.
         loginBtn.setOnClickListener{
             val email = emailField.text.toString()
             val password = passwordField.text.toString()

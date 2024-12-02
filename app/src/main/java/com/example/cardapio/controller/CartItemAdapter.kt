@@ -7,19 +7,20 @@ import com.bumptech.glide.Glide
 import com.example.cardapio.R
 import com.example.cardapio.databinding.CartItemBinding
 import com.example.cardapio.model.MenuItem
-
+// Adapta os itens do carrinho para exibição em um RecyclerView.
 class CartItemAdapter(
-    private val cartItems: MutableList<MenuItem>,
-    private val onQuantityChange: (MenuItem, Boolean) -> Unit,
-    private val onRemoveItem: (MenuItem) -> Unit
+    private val cartItems: MutableList<MenuItem>,// Lista de itens no carrinho.
+    private val onQuantityChange: (MenuItem, Boolean) -> Unit,// Callback para alterar quantidade.
+    private val onRemoveItem: (MenuItem) -> Unit// Callback para remover item.
 ) : RecyclerView.Adapter<CartItemAdapter.CartViewHolder>() {
 
+    // ViewHolder que associa o layout de cada item do carrinho.
     class CartViewHolder(val binding: CartItemBinding) : RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CartViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         val binding = CartItemBinding.inflate(inflater, parent, false)
-        return CartViewHolder(binding)
+        return CartViewHolder(binding) // Retorna um novo ViewHolder.
     }
 
     override fun onBindViewHolder(holder: CartViewHolder, position: Int) {
@@ -47,5 +48,5 @@ class CartItemAdapter(
         }
     }
 
-    override fun getItemCount(): Int = cartItems.size
+    override fun getItemCount(): Int = cartItems.size// Retorna o número de itens.
 }
